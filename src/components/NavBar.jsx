@@ -1,9 +1,12 @@
-import { Button, Flex, HStack, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, HStack, IconButton, Text, useColorMode } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {FaSun , FaMoon } from 'react-icons/fa'
 
 
 function NavBar() {
+    const {colorMode , toggleColorMode}=useColorMode()
+  const isDark = colorMode === 'dark'
   return (
     <HStack w={'100%'}  justifyContent='space-between' mb='80px'>
         <Link to='/' alignSelf='flex-start'>
@@ -11,16 +14,17 @@ function NavBar() {
         </Link>
         <Flex>
         
-        <Link to='/' >
+        <Box>
             <Text as={Button} bgColor='transparent' color={'blue.200'}>
                 Home
             </Text>
-        </Link>
-        <Link to='/'>
+        </Box>
+        <Box>
             <Text as={Button} ml='20px' bgColor='transparent' color={'blue.200'}>
                 Exercises
             </Text>
-        </Link>
+        </Box>
+        <IconButton   ml='8' icon={isDark ?<FaSun/> : <FaMoon/>} onClick={toggleColorMode} isRound={true} ></IconButton>
         </Flex>
     </HStack>
   )
